@@ -8,7 +8,7 @@ struct Recipe **newBook(int N) {
    if(N > 0){
     ret = malloc(N * sizeof(struct Recipe));
    }else{
-    ret = malloc(0);
+    ret = NULL;
    }
 
     return ret;
