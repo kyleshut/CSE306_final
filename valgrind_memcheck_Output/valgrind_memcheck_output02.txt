@@ -1,0 +1,10 @@
+// After implementing the fix I discussed in valgrind_memcheckOutput01.txt there are no memory leaks
+
+==19191== HEAP SUMMARY:
+==19191==     in use at exit: 0 bytes in 0 blocks
+==19191==   total heap usage: 21 allocs, 21 frees, 5,098 bytes allocated
+==19191== 
+==19191== All heap blocks were freed -- no leaks are possible
+==19191== 
+==19191== Use --track-origins=yes to see where uninitialised values come from
+==19191== ERROR SUMMARY: 9 errors from 6 contexts (suppressed: 0 from 0)
