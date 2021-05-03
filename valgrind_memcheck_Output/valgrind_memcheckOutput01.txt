@@ -1,0 +1,9 @@
+// I believe I am leaking memory since I am not freeing after calling newBook and newRecipe i will fix this and run memcheck tool again
+ 
+==18642== LEAK SUMMARY:
+==18642==    definitely lost: 160 bytes in 1 blocks
+==18642==    indirectly lost: 16 bytes in 1 blocks
+==18642==      possibly lost: 0 bytes in 0 blocks
+==18642==    still reachable: 0 bytes in 0 blocks
+==18642==         suppressed: 0 bytes in 0 blocks
+==18642== 
