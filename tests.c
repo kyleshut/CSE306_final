@@ -48,6 +48,19 @@ void test02(void) {
   CU_ASSERT_EQUAL(expected , actual);
 }
 
+void test03(void) {
+   bool actual = true;
+    bool expected = true;
+    for(int i = 0; i < 100000000; i++){
+    struct Recipe **recipeBook = newBook(0);
+    if(recipeBook != NULL){
+       actual = false;
+    }
+    free(recipeBook);
+    }
+  CU_ASSERT_EQUAL(expected , actual);
+}
+
 /* The main() function for setting up and running the tests.
  * Returns a CUE_SUCCESS on successful running, another
  * CUnit error code on failure.
@@ -70,6 +83,7 @@ int main()
    if (
           (NULL == CU_add_test(Suite, "", test01))
           ||(NULL == CU_add_test(Suite, "", test02))
+          ||(NULL == CU_add_test(Suite, "", test03))
       )
    {
       CU_cleanup_registry();
