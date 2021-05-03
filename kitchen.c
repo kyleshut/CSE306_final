@@ -4,13 +4,10 @@
 #include <stdbool.h>
 
 struct Recipe **newBook(int N) {
-   struct Recipe **ret;
+   struct Recipe **ret = NULL;
    if(N > 0){
     ret = malloc(N * sizeof(struct Recipe));
-   }else{
-    ret = NULL;
    }
-
     return ret;
 }
 
