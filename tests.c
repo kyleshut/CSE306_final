@@ -31,6 +31,8 @@ void test01(void) {
       actual = false;
    }
     //printf("You entered: %d", (recipeBook[0]-> servings));
+   free(recipeBook[0]);
+   free(recipeBook);
   CU_ASSERT_EQUAL(expected , actual);
 }
 
@@ -42,6 +44,7 @@ void test02(void) {
        actual = false;
     }
     //printf("You entered: %d", (recipeBook[0]-> servings));
+   free(recipeBook);
   CU_ASSERT_EQUAL(expected , actual);
 }
 
