@@ -1,0 +1,52 @@
+I wanted to measure the performance of newBook and look at ways to improve its performance while having the same the same functionality 
+so I ran my current implementation with gprof to measure newBook functions current performance. 
+I created a new test that calls newBook 100,000,000 times and ran gprof to look at the performance and discovered that it takes 
+approximately 2.7 ns for complete a call of newBook. I believe I may be able to make newBook faster by assigning ret to Null at the same
+time I declare ret as a variable instead of later assigning it to NULL in the else block if N < 0. I will implement this change and run 
+gprof again to see if it improves the functions performance. 
+
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ns/call  ns/call  name    
+ 59.28      0.45     0.45                             test03
+ 35.57      0.72     0.27 100000002     2.70     2.70  newBook
+  5.27      0.76     0.04                             frame_dummy
+  0.00      0.76     0.00        1     0.00     0.00  newRecipe
+
+			Call graph
+
+
+granularity: each sample hit covers 2 byte(s) for 1.31% of 0.76 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     94.7    0.45    0.27                 test03 [1]
+                0.27    0.00 100000000/100000002     newBook [2]
+-----------------------------------------------
+                0.00    0.00       1/100000002     test01 [4]
+                0.00    0.00       1/100000002     test02 [5]
+                0.27    0.00 100000000/100000002     test03 [1]
+[2]     35.5    0.27    0.00 100000002         newBook [2]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]      5.3    0.04    0.00                 frame_dummy [3]
+-----------------------------------------------
+                                                 <spontaneous>
+[4]      0.0    0.00    0.00                 test01 [4]
+                0.00    0.00       1/100000002     newBook [2]
+                0.00    0.00       1/1           newRecipe [6]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]      0.0    0.00    0.00                 test02 [5]
+                0.00    0.00       1/100000002     newBook [2]
+-----------------------------------------------
+                0.00    0.00       1/1           test01 [4]
+[6]      0.0    0.00    0.00       1         newRecipe [6]
+-----------------------------------------------
+
+Index by function name
+
+   [3] frame_dummy             [6] newRecipe
+   [2] newBook                 [1] test03
