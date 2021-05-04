@@ -1,0 +1,47 @@
+The change I outlined in analyze01.txt has improved the performance of newBook function from 2.7 ns per call to 1.8 ns per call
+
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ns/call  ns/call  name    
+ 60.78      0.34     0.34                             test03
+ 32.18      0.52     0.18 100000002     1.80     1.80  newBook
+  7.15      0.56     0.04                             frame_dummy
+  0.00      0.56     0.00        1     0.00     0.00  newRecipe
+
+			Call graph
+
+
+granularity: each sample hit covers 2 byte(s) for 1.78% of 0.56 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     92.9    0.34    0.18                 test03 [1]
+                0.18    0.00 100000000/100000002     newBook [2]
+-----------------------------------------------
+                0.00    0.00       1/100000002     test01 [4]
+                0.00    0.00       1/100000002     test02 [5]
+                0.18    0.00 100000000/100000002     test03 [1]
+[2]     32.1    0.18    0.00 100000002         newBook [2]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]      7.1    0.04    0.00                 frame_dummy [3]
+-----------------------------------------------
+                                                 <spontaneous>
+[4]      0.0    0.00    0.00                 test01 [4]
+                0.00    0.00       1/100000002     newBook [2]
+                0.00    0.00       1/1           newRecipe [6]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]      0.0    0.00    0.00                 test02 [5]
+                0.00    0.00       1/100000002     newBook [2]
+-----------------------------------------------
+                0.00    0.00       1/1           test01 [4]
+[6]      0.0    0.00    0.00       1         newRecipe [6]
+-----------------------------------------------
+
+Index by function name
+
+   [3] frame_dummy             [6] newRecipe
+   [2] newBook                 [1] test03
