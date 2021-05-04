@@ -1,4 +1,4 @@
-I wanted to measure the performance of newBook and look at ways to improve its performance while having the same the same functionality 
+I wanted to measure the performance of newBook and look at ways to improve its performance while having the same functionality 
 so I ran my current implementation with gprof to measure newBook functions current performance. 
 I created a new test that calls newBook 100,000,000 times and ran gprof to look at the performance and discovered that it takes 
 approximately 2.7 ns for complete a call of newBook. I believe I may be able to make newBook faster by assigning ret to Null at the same

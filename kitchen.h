@@ -8,5 +8,5 @@ struct Recipe{
 
 struct Recipe **newBook(int N);
 struct Recipe *newRecipe(char *title, int servings);
-
+void addRecipe(struct Recipe **recipeBook, struct Recipe *recipe, int page);
 #endif

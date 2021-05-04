@@ -18,3 +18,7 @@ struct Recipe *newRecipe(char *title, int servings) {
    ret -> servings = servings;
     return ret;
 }
+
+void addRecipe(struct Recipe **recipeBook, struct Recipe *recipe, int page){
+recipeBook[page] = recipe;
+}
