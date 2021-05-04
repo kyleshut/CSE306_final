@@ -77,6 +77,24 @@ void test04(void) {
   CU_ASSERT_EQUAL(expected , actual);
 }
 
+void test05(void) {
+    bool actual = true;
+    bool expected = true;
+    
+    char str[] = "potato salad";
+    char *str2 = &str[0];
+    struct Ingredient *ingredient =  newIngredient(str2, 5);
+    if(ingredient -> name != str2){
+       actual = false;
+    }
+
+    if(ingredient -> caloriesPerGram != 5){
+       actual = false;
+    }
+    free(ingredient);
+  CU_ASSERT_EQUAL(expected , actual);
+}
+
 /* The main() function for setting up and running the tests.
  * Returns a CUE_SUCCESS on successful running, another
  * CUnit error code on failure.
@@ -101,6 +119,7 @@ int main()
           ||(NULL == CU_add_test(Suite, "", test02))
           ||(NULL == CU_add_test(Suite, "", test03))
           ||(NULL == CU_add_test(Suite, "", test04))
+          ||(NULL == CU_add_test(Suite, "", test05))
       )
    {
       CU_cleanup_registry();
