@@ -20,5 +20,5 @@ struct Recipe *newRecipe(char *title, int servings) {
 }
 
 void addRecipe(struct Recipe **recipeBook, struct Recipe *recipe, int page){
-recipeBook[page] = recipe;
+recipeBook[page - 1] = recipe;
 }
