@@ -1,0 +1,39 @@
+My test 4 failed so I ran gdb to debug the issue. After running gdb I discovered that the bug had to do with the index of
+the recipeBook that recipe was going into. Since the first page of a book is page 1 and arrays are 0 indexed there 
+is an issue where when you input 1 as page number it will map to index 1 of recipeBook instead of the desired functionality 
+of it being put into index 0 of recipeBook. I will fix this and see if my test now passes. 
+
+
+[kyleshut@timberlake lab-practical-exam-kyleshut]$ gdb tests
+GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-120.el7
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /home/none/kyleshut/CSE306/lab-practical-exam-kyleshut/tests...done.
+(gdb) break 76
+Breakpoint 1 at 0x4015c1: file tests.c, line 76.
+(gdb) run
+Starting program: /home/none/kyleshut/CSE306/lab-practical-exam-kyleshut/tests 
+
+Breakpoint 1, test04 () at tests.c:76
+76	    free(recipeBook);
+(gdb) info locals
+actual = false
+expected = true
+recipeBook = 0x606470
+str = "moms cooking"
+str2 = 0x7fffffffdd83 "moms cooking"
+recipe = 0x606520
+(gdb) print recipeBook[0]
+$1 = (struct Recipe *) 0x7ffff7bc47b8 <main_arena+88>
+(gdb) print recipeBook[1]
+$2 = (struct Recipe *) 0x606520
+(gdb) print recipeBook[0] -> servings
+$3 = 0
+(gdb) print recipeBook[1] -> servings
+$4 = 5
