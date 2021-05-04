@@ -22,3 +22,11 @@ struct Recipe *newRecipe(char *title, int servings) {
 void addRecipe(struct Recipe **recipeBook, struct Recipe *recipe, int page){
 recipeBook[page - 1] = recipe;
 }
+
+struct Ingredient *newIngredient(char *name, int caloriesPerGram) {
+   struct Ingredient *ret;
+   ret = (struct Ingredient*)malloc(sizeof(struct Ingredient));
+   ret -> name = *name;
+   ret -> caloriesPerGram = caloriesPerGram;
+    return ret;
+}
