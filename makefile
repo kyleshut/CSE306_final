@@ -1,4 +1,4 @@
-OBJECTS = kitchen.o 
+OBJECTS = kitchen.o dummy.o anotherdummy.o
 
 # OS identification from: https://stackoverflow.com/questions/714100/os-detecting-makefile
 OS := $(shell uname -s)
@@ -22,13 +22,19 @@ GEX = kitchen-gprof
 kitchen.o: kitchen.c
 	$(CC) $(FLAGS) kitchen.c
 
+dummy.o: dummy.c
+	$(CC) $(FLAGS) dummy.c
+
+anotherdummy.o: anotherdummy.c
+	$(CC) $(FLAGS) anotherdummy.c
+
 tests: $(OBJECTS) tests.c
 	$(CC) -g -O0 -Wall -fprofile-arcs -ftest-coverage -L $(CUNIT_PATH_PREFIX)lib  -I $(CUNIT_PATH_PREFIX)include/$(CUNIT_DIRECTORY) $(OBJECTS) tests.c -o tests -lcunit -lgcov 
 
 clean:
 	rm -rf *~ *.o *.dSYM a.out runner tests *.xml *.gc??
 
-c-exec: kitchen.o
+c-exec: kitchen.o dummy.o anotherdummy.o
 	gcc -g -O0 -Wall $(PERFFLAGS) $(CFLAGS) -o $(GEX) $(SRC) tests.c  -lcunit
 
 .PHONY: andRunPerformance
