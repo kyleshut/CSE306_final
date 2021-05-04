@@ -60,6 +60,22 @@ void test03(void) {
     }
   CU_ASSERT_EQUAL(expected , actual);
 }
+void test04(void) {
+    bool actual = true;
+    bool expected = true;
+    
+    struct Recipe **recipeBook = newBook(10);
+    char str[] = "moms cooking";
+    char *str2 = &str[0];
+    struct Recipe *recipe =  newRecipe(str2, 5);
+    addRecipe(recipeBook, recipe, 1);
+    if(recipeBook[0] != recipe){
+       actual = false;
+    }
+    free(recipe);
+    free(recipeBook);
+  CU_ASSERT_EQUAL(expected , actual);
+}
 
 /* The main() function for setting up and running the tests.
  * Returns a CUE_SUCCESS on successful running, another
@@ -84,6 +100,7 @@ int main()
           (NULL == CU_add_test(Suite, "", test01))
           ||(NULL == CU_add_test(Suite, "", test02))
           ||(NULL == CU_add_test(Suite, "", test03))
+          ||(NULL == CU_add_test(Suite, "", test04))
       )
    {
       CU_cleanup_registry();
