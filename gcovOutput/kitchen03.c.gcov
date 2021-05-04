@@ -1,0 +1,29 @@
+        -:    0:Source:kitchen.c
+        -:    0:Graph:kitchen.gcno
+        -:    0:Data:kitchen.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <stdlib.h>
+        -:    3:#include "kitchen.h"
+        -:    4:#include <stdbool.h>
+        -:    5:
+100000003:    6:struct Recipe **newBook(int N) {
+100000003:    7:   struct Recipe **ret = NULL;
+100000003:    8:   if(N > 0){
+        2:    9:    ret = malloc(N * sizeof(struct Recipe));
+        -:   10:   }
+100000003:   11:    return ret;
+        -:   12:}
+        -:   13:
+        2:   14:struct Recipe *newRecipe(char *title, int servings) {
+        -:   15:   struct Recipe *ret;
+        2:   16:   ret = (struct Recipe*)malloc(sizeof(struct Recipe));
+        2:   17:   ret -> title = title;
+        2:   18:   ret -> servings = servings;
+        2:   19:    return ret;
+        -:   20:}
+        -:   21:
+        1:   22:void addRecipe(struct Recipe **recipeBook, struct Recipe *recipe, int page){
+        1:   23:recipeBook[page - 1] = recipe;
+        1:   24:}
